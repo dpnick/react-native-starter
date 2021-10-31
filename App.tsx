@@ -1,21 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { ThemeProvider } from 'styled-components';
+import useTranslate from './src/hooks/useTranslate';
+import Navigation from './src/navigators';
+import { darkTheme, lightTheme, Theme } from './src/Theme';
 
 export default function App() {
+  const [theme, setTheme] = useState<Theme>(Theme.LIGHT);
+  const { setLanguage } = useTranslate();
+
+  useEffect(() => {
+    setLanguage();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme === Theme.LIGHT ? lightTheme : darkTheme}>
+        <Navigation setTheme={setTheme} theme={theme} />
+      </ThemeProvider>
+      <StatusBar style='auto' />
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
