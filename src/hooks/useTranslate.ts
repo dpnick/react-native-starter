@@ -1,7 +1,5 @@
 import * as Localization from 'expo-localization';
 import I18n from 'i18n-js';
-import * as en from '../../assets/translations/en.json';
-import * as fr from '../../assets/translations/fr.json';
 
 enum Language {
   FR = 'fr',
@@ -15,17 +13,13 @@ const translationGetters = {
 };
 
 export default function useTranslation() {
-  const setLanguage = (lang?: Language) => {
+  const setLanguage = () => {
     let language = Localization.locale.split('-')[0] as Language;
-    console.log(language);
     if (!Object.values(Language).includes(language)) {
       language = Language.EN;
     }
-    console.log(language);
-    I18n.translations = { en, fr };
+    I18n.translations = { [language]: translationGetters[language]() };
     I18n.locale = language;
-    I18n.fallbacks = true;
-    I18n.defaultLocale = Language.EN;
   };
 
   return {

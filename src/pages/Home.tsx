@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <Container>
       <MainText>{t('title')}</MainText>
-      <SecondText>@mougin_yannick</SecondText>
+      <SecondText>@dpnick_</SecondText>
     </Container>
   );
 }
