@@ -16,8 +16,8 @@ This repo contains all the features i need in (almost) every projects.
 - [x] enable hermes on both android and iOS
 - [x] expo bare-workflow (more on this here https://docs.expo.dev/introduction/managed-vs-bare/)
 - [x] styled components
-- [x] light and dark themes
-- [x] translation (based on user preferences)
+- [x] light and dark themes + theme switch feature
+- [x] translation (based on user preferences) + lang switch feature
 - [x] navigation (https://reactnavigation.org/docs/getting-started)
 - [ ] firebase auth
 
