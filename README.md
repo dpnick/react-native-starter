@@ -7,6 +7,13 @@
 After creating multiple apps I decided to create this react-native starter template to avoid starting from scratch each time.
 This repo contains all the features i need in (almost) every projects.
 
+## Getting started
+
+1. `git clone https://github.com/dpnick/react-native-starter.git your-app-name`
+2. `cd your-app-name`
+3. `npm i`
+4. run it either on android `npm run android` or iOS `npm run ios` (check `package.json` for all scripts)
+
 ## Features
 
 > Don't forget to disable commented lines about environments files in `.gitignore`
