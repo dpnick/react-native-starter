@@ -16,18 +16,25 @@ This repo contains all the features i need in (almost) every projects.
 - [x] enable hermes on both android and iOS
 - [x] expo bare-workflow (more on this here https://docs.expo.dev/introduction/managed-vs-bare/)
 - [x] styled components
-- [x] light and dark themes + theme switch feature
-- [x] translation (based on user preferences) + lang switch feature
+- [x] light and dark themes + theme switch feature + persistance
+- [x] translation (based on user preferences) + lang switch feature + persistance
 - [x] navigation (https://reactnavigation.org/docs/getting-started)
-- [ ] firebase auth
+- [x] persist theme and language thanks to AsyncStorage for the moment but will move on react-native-mmkv asap
+
+## WHAT'S NEXT ?
+
+I'm currently thinking about how to improve it without making it too opinionated.
+Maybe :
+
+- [ ] Move from AsyncStorage to react-native-mmkv
+- [ ] Toast component to give feedback to the user (like react-native-styled-toast or custom)
+- [ ] Auth system (like firebase)
+
+If you have any idea feel free.
 
 ## Requests
 
 If you think something is missing, feel free to send me a message.
-
-## Credits
-
-Thanks to @WebDevSimplified, i adapted his original React web firebase AuthContext to work on react-native.
 
 ## Support
 
