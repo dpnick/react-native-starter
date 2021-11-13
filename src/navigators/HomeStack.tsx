@@ -9,7 +9,7 @@ import { ThemeContext } from '../contexts/ThemeProvider';
 import Home from '../pages/Home';
 
 const HomeStack = createNativeStackNavigator();
-const fullIconOffset = 40; // icon size + padding
+const fullIconOffset = 44; // icon size + padding
 
 export default function HomeStackNavigator() {
   const { isDarkTheme, switchTheme } = useContext(ThemeContext);
