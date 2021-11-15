@@ -22,17 +22,18 @@ This repo contains all the features i need in (almost) every projects.
 - [x] multiple environments variables (simple custom script see `set-environments.js` and package.json)
 - [x] enable hermes on both android and iOS
 - [x] expo bare-workflow (more on this here https://docs.expo.dev/introduction/managed-vs-bare/)
-- [x] styled components
-- [x] light and dark themes + theme switch feature + persistance
-- [x] translation (based on user preferences) + lang switch feature + persistance
+- [x] styled components / styled system
+- [x] theming (light and dark) + switch feature + persistance
+- [x] translation (based on user preferences) + switch feature + persistance
 - [x] navigation (https://reactnavigation.org/docs/getting-started)
-- [x] persist theme and language thanks to AsyncStorage for the moment but will move on react-native-mmkv asap
+- [x] AsyncStorage for persistane (will move to react-native-mmkv asap)
 
 ## WHAT'S NEXT ?
 
 I'm currently thinking about how to improve it without making it too opinionated.
 Maybe :
 
+- [ ] Implement Splash screen
 - [ ] Move from AsyncStorage to react-native-mmkv
 - [ ] Toast component to give feedback to the user (like react-native-styled-toast or custom)
 - [ ] Auth system (like firebase)

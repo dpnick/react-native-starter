@@ -1,8 +1,7 @@
-import { DefaultTheme } from 'styled-components';
+import { DefaultTheme } from 'styled-components/native';
 
 const lightTheme: DefaultTheme = {
-  borderRadius: 8,
-
+  space: [0, 4, 8, 16, 32, 64],
   colors: {
     primary: '#009B77',
     secondary: 'gray',
@@ -12,12 +11,11 @@ const lightTheme: DefaultTheme = {
 };
 
 const darkTheme: DefaultTheme = {
-  borderRadius: 8,
-
+  space: [0, 4, 8, 16, 32, 64],
   colors: {
     primary: '#C3447A',
     secondary: 'gray',
-    background: 'black',
+    background: '#090d13',
     text: 'white',
   },
 };
