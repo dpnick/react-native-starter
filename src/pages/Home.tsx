@@ -2,10 +2,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Linking, TouchableOpacity } from 'react-native';
-import Styled from 'styled-components/native';
+import AnimatedView from '../components/AnimatedView';
 import StyledButton from '../components/StyledButton';
+import StyledText from '../components/StyledText';
 import { StorageKeys } from '../models/storage';
-import { StyledTheme } from '../models/theme';
 import { Language } from '../models/translation';
 
 /*
@@ -13,24 +13,7 @@ You can import any variables from your env.json file like :
 import { EXAMPLE } from '../../env.json';
 */
 
-const Container = Styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  background-color: ${(props: StyledTheme) => props.theme.colors.background};
-`;
-const MainText = Styled.Text`
-  font-size: 20px;
-  text-align: center;
-  margin: 10px;
-  color: ${(props: StyledTheme) => props.theme.colors.primary};
-`;
-const SecondText = Styled.Text`
-  font-size: 18px;
-  text-align: center;
-  margin-bottom: 12px;
-  color: ${(props: StyledTheme) => props.theme.colors.secondary};
-`;
+const TWITTER_NAME = '@dpnick_';
 
 export default function Home() {
   const { t, i18n } = useTranslation();
@@ -52,12 +35,27 @@ export default function Home() {
   };
 
   return (
-    <Container>
-      <MainText>{t('title')}</MainText>
+    <AnimatedView flex={1} justifyContent='center' alignItems='center'>
+      <StyledText
+        margin={10}
+        fontSize={18}
+        textAlign='center'
+        marginBottom={12}
+        color='primary'
+      >
+        {t('title')}
+      </StyledText>
       <TouchableOpacity onPress={openTwitter}>
-        <SecondText>@dpnick_</SecondText>
+        <StyledText
+          fontSize={18}
+          textAlign='center'
+          marginBottom={12}
+          color='secondary'
+        >
+          {TWITTER_NAME}
+        </StyledText>
       </TouchableOpacity>
       <StyledButton onPress={updateLanguage} text={t('change-language')} />
-    </Container>
+    </AnimatedView>
   );
 }

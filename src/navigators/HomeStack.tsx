@@ -1,10 +1,16 @@
 import { Feather } from '@expo/vector-icons';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useContext, useRef } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Animated } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useTheme as useStyledTheme } from 'styled-components';
+import Animated, {
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
+import { useTheme as useStyledTheme } from 'styled-components/native';
 import { ThemeContext } from '../contexts/ThemeProvider';
 import Home from '../pages/Home';
 
@@ -13,22 +19,26 @@ const fullIconOffset = 44; // icon size + padding
 
 export default function HomeStackNavigator() {
   const { isDarkTheme, switchTheme } = useContext(ThemeContext);
-  const translateAnim = useRef(new Animated.Value(0)).current;
   const { colors } = useStyledTheme();
   const { t } = useTranslation();
+  const anim = useSharedValue(0);
 
-  const toggleThemeMode = () => {
-    Animated.spring(translateAnim, {
-      toValue: fullIconOffset,
-      useNativeDriver: true,
-    }).start(({ finished }) => {
-      if (finished) switchTheme();
-      Animated.spring(translateAnim, {
-        toValue: 0,
-        useNativeDriver: true,
-      }).start();
-    });
-  };
+  const toggleThemeMode = useCallback(() => {
+    anim.value = withSequence(
+      withTiming(fullIconOffset, undefined, (isFinished) => {
+        if (isFinished) {
+          runOnJS(switchTheme)();
+        }
+      }),
+      withTiming(0)
+    );
+  }, [switchTheme]);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: anim.value }],
+    };
+  });
 
   return (
     <HomeStack.Navigator>
@@ -44,9 +54,7 @@ export default function HomeStackNavigator() {
             color: colors.text,
           },
           headerRight: () => (
-            <Animated.View
-              style={{ transform: [{ translateX: translateAnim }] }}
-            >
+            <Animated.View style={animatedStyle}>
               <TouchableOpacity onPress={() => toggleThemeMode()}>
                 <Feather
                   name={isDarkTheme ? 'sun' : 'moon'}
